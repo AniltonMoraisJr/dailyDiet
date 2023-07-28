@@ -20,11 +20,12 @@ export default {
     BOLD: "NunitoSans_700Bold",
   },
   FONT_SIZE: {
-    XSM: 12,
-    SM: 14,
-    MD: 16,
-    LG: 18,
-    XLG: 24,
-    XXLG: 32,
+    TITLE_G: 32,
+    TITLE_M: 24,
+    TITLE_S: 18,
+    TITLE_XS: 14,
+    BODY_M: 16,
+    BODY_S: 14,
+    BODY_XS: 12,
   },
 };

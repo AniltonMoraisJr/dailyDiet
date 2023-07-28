@@ -2,22 +2,25 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
 
-import { Container } from "./styles";
-import { Text, TouchableOpacity, View } from "react-native";
+import Button from "@components/Button";
 import Logo from "@components/Logo";
+import { Text, View } from "react-native";
+import { Container } from "./styles";
+import { ArrowLineRight } from "phosphor-react-native";
 
 const Onboarding: React.FC = () => {
   const navigation = useNavigation();
   const { FONT_FAMILY, FONT_SIZE, COLORS } = useTheme();
   return (
     <Container>
-      <View style={{ marginTop: "auto", alignItems: "center", gap: 16 }}>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Logo width={200} height={80} />
         <Text
           style={{
             fontFamily: FONT_FAMILY.BOLD,
-            fontSize: FONT_SIZE.XLG,
+            fontSize: FONT_SIZE.TITLE_M,
             color: COLORS.GRAY_1,
+            marginTop: 40,
           }}
         >
           Bem-vindo,
@@ -25,19 +28,19 @@ const Onboarding: React.FC = () => {
         <Text
           style={{
             fontFamily: FONT_FAMILY.BOLD,
-            fontSize: FONT_SIZE.XLG,
+            fontSize: FONT_SIZE.TITLE_S,
             color: COLORS.GRAY_1,
           }}
         >
           Vamos mudar sua vida?
         </Text>
       </View>
-      <TouchableOpacity
-        style={{ marginTop: "auto", marginBottom: 24 }}
+      <Button
+        title="Começar Dieta"
+        icon={<ArrowLineRight />}
+        iconPosition="right"
         onPress={() => navigation.navigate("home")}
-      >
-        <Text>Começar</Text>
-      </TouchableOpacity>
+      />
     </Container>
   );
 };

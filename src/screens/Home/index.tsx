@@ -1,11 +1,16 @@
 import React from "react";
-import { Container } from "./styles";
+import { Container, HomeHeader } from "./styles";
 import { Text } from "react-native";
+import Logo from "@components/Logo";
+import Avatar from "@components/Avatar";
 
 const Home: React.FC = () => {
   return (
     <Container>
-      <Text>Home</Text>
+      <HomeHeader>
+        <Logo />
+        <Avatar />
+      </HomeHeader>
     </Container>
   );
 };
