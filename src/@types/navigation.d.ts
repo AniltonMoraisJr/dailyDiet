@@ -4,6 +4,7 @@ export declare global {
     interface RootParamList {
       onboarding: undefined;
       home: undefined;
+      newMeal: undefined;
     }
   }
 }

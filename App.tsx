@@ -9,6 +9,7 @@ import {
   NunitoSans_400Regular,
   NunitoSans_700Bold,
 } from "@expo-google-fonts/nunito-sans";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -21,9 +22,9 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <Background>
-        <Routes />
-      </Background>
+      <SafeAreaProvider>
+          <Routes />
+      </SafeAreaProvider>
     </ThemeProvider>
   );
 }

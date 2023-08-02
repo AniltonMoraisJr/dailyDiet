@@ -5,6 +5,7 @@ export type ButtonType = "PRIMARY" | "SECONDARY";
 
 type ButtonStyleProps = {
   type: ButtonType;
+  width?: number
 };
 
 export const Container = styled(TouchableOpacity)<ButtonStyleProps>`
@@ -13,6 +14,8 @@ export const Container = styled(TouchableOpacity)<ButtonStyleProps>`
   gap: 12px;
   justify-content: center;
   align-items: center;
+
+  width: ${props => props.width ? `${props.width}px` : '100%'};
 
   ${(props) =>
     props.type === "PRIMARY"

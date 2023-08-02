@@ -1,17 +1,22 @@
 import React from "react";
-import { View, TextInputProps } from "react-native";
 
 import { Container, Label, Input } from "./styles";
+import { Keyboard } from "react-native";
 
-type Props = TextInputProps & {
+type Props = {
   labelText: string;
+  placeholderText?: string
+  value: string | undefined
+  handleChangeText: (value: string) => void
+  multiline?: boolean
+  numberOfLines?: number
 };
 
-const InputControll: React.FC<Props> = ({ labelText, ...textInputProps }) => {
+const InputControll: React.FC<Props> = ({ labelText, placeholderText = 'Informe um valor', value, handleChangeText, multiline = false, numberOfLines = 1 }) => {
   return (
     <Container>
       <Label>{labelText}</Label>
-      <Input {...textInputProps} />
+      <Input value={value} returnKeyType="done" onChangeText={handleChangeText} placeholder={placeholderText} multiline={multiline} numberOfLines={numberOfLines} />
     </Container>
   );
 };

@@ -10,6 +10,7 @@ type Props = TouchableOpacityProps & {
   iconPosition?: "right" | "left";
   title: string;
   type?: ButtonType;
+  width?: number
 };
 
 const Button: React.FC<Props> = ({
@@ -17,11 +18,12 @@ const Button: React.FC<Props> = ({
   iconPosition = "left",
   title,
   type = "PRIMARY",
+  width,
   ...rest
 }) => {
   const { COLORS } = useTheme();
   return (
-    <Container type={type} {...rest}>
+    <Container width={width} type={type} {...rest}>
       {icon && iconPosition === "left" && (
         <IconContext.Provider
           value={{

@@ -6,8 +6,10 @@ import Avatar from "@components/Avatar";
 import StatisticCard from "@components/StatisticCard";
 import Button from "@components/Button";
 import { Plus } from "phosphor-react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Home: React.FC = () => {
+  const navigate = useNavigation();
   return (
     <Container>
       <HomeHeader>
@@ -24,7 +26,7 @@ const Home: React.FC = () => {
         />
         <ScrollView>
           <BodyTextRefeicoes>Refeições</BodyTextRefeicoes>
-          <Button icon={<Plus />} title="Nova refeição" />
+          <Button icon={<Plus />} title="Nova refeição" onPress={() => navigate.navigate('newMeal')} />
         </ScrollView>
       </Body>
     </Container>

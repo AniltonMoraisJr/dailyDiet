@@ -6,7 +6,7 @@ import Button from "@components/Button";
 import Logo from "@components/Logo";
 import { Text, View } from "react-native";
 import { Container } from "./styles";
-import { ArrowLineRight } from "phosphor-react-native";
+import { ArrowLineRight, ArrowRight } from "phosphor-react-native";
 
 const Onboarding: React.FC = () => {
   const navigation = useNavigation();
@@ -37,7 +37,7 @@ const Onboarding: React.FC = () => {
       </View>
       <Button
         title="Começar Dieta"
-        icon={<ArrowLineRight />}
+        icon={<ArrowRight />}
         iconPosition="right"
         onPress={() => navigation.navigate("home")}
       />
