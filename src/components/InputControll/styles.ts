@@ -15,11 +15,21 @@ export const Label = styled.Text`
   `}
 `;
 
-export const Input = styled(TextInput)`
+type InputProps = {
+  isFilled: boolean;
+  hasError: boolean;
+};
+
+export const Input = styled(TextInput)<InputProps>`
   width: 100%;
   padding: 14px;
-  ${({ theme }) => css`
-    border: 1px solid ${theme.COLORS.GRAY_5};
+  ${({ theme, hasError, isFilled }) => css`
+    border: 1px solid
+      ${hasError
+        ? theme.COLORS.RED_DARK
+        : isFilled
+        ? theme.COLORS.GRAY_3
+        : theme.COLORS.GRAY_5};
     font-family: ${theme.FONT_FAMILY.REGULAR};
     font-size: ${theme.FONT_SIZE.BODY_M}px;
     color: ${theme.COLORS.GRAY_1};
