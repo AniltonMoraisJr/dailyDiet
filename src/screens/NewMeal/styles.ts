@@ -27,4 +27,5 @@ export const RowTwoColumns = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
+  gap: 8px;
 `;

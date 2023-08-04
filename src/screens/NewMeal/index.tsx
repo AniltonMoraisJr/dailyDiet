@@ -37,7 +37,9 @@ const NewMeal: React.FC = () => {
         title="Nova refeição"
         handleIconArrowLeft={() => navigate.navigate("home")}
       />
+      <KeyboardAvoidingView style={{flex: 1, backgroundColor: '#fff'}} behavior="padding">
       <Body>
+
         <Controller
           control={control}
           name="name"
@@ -103,6 +105,7 @@ const NewMeal: React.FC = () => {
           />
         </RowTwoColumns>
       </Body>
+      </KeyboardAvoidingView>
       <SafeAreaView
         style={{
           paddingBottom: Platform.OS === "android" ? 27 : 0,
@@ -110,12 +113,12 @@ const NewMeal: React.FC = () => {
           alignItems: "center",
           backgroundColor: "#fff",
         }}
-      >
+        >
         <Button
           width={320}
           title="Cadastrar refeição"
           onPress={() => onSubmit()}
-        />
+          />
       </SafeAreaView>
     </Container>
   );
