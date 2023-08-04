@@ -1,5 +1,4 @@
 import React from "react";
-import { useTheme } from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { Controller, useForm } from "react-hook-form";
 import { MealDTO } from "@domains/MealDTO";
@@ -28,8 +27,8 @@ const NewMeal: React.FC = () => {
       }),
       hour: new Date(Date.now()).toLocaleTimeString("pt-BR", {
         timeZone: "America/Sao_Paulo",
-        hour: '2-digit',
-        minute: '2-digit'
+        hour: "2-digit",
+        minute: "2-digit",
       }),
       isOnTheDiet: true,
     },
@@ -45,13 +44,16 @@ const NewMeal: React.FC = () => {
         handleIconArrowLeft={() => navigate.navigate("home")}
       />
       <KeyboardAvoidingView
-        style={{ flex: 1, backgroundColor: "#fff" }}
+        style={{
+          flex: 1,
+          backgroundColor: "#fff",
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+        }}
         keyboardVerticalOffset={20}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
-        <ScrollView
-          contentContainerStyle={{ flex: 1, backgroundColor: "#fff" }}
-        >
+        <ScrollView>
           <Body>
             <Controller
               control={control}
