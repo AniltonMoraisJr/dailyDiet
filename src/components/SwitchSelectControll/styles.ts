@@ -63,6 +63,7 @@ export const Circle = styled.View<CircleProps>`
   width: 8px;
   height: 8px;
   margin-right: 8px;
+  border-radius: 100%;
   background: ${({ theme, type }) =>
     type === "positive" ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK};
 `;

@@ -37,6 +37,7 @@ const Onboarding: React.FC = () => {
       </View>
       <Button
         title="Começar Dieta"
+        width={200}
         icon={<ArrowRight />}
         iconPosition="right"
         onPress={() => navigation.navigate("home")}

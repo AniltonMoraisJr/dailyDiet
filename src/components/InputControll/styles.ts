@@ -2,6 +2,7 @@ import styled, { css } from "styled-components/native";
 import { TextInput } from "react-native";
 
 export const Container = styled.View`
+min-width: 150px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

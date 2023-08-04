@@ -28,7 +28,8 @@ const NewMeal: React.FC = () => {
       }),
       hour: new Date(Date.now()).toLocaleTimeString("pt-BR", {
         timeZone: "America/Sao_Paulo",
-        dateStyle: "short",
+        hour: '2-digit',
+        minute: '2-digit'
       }),
       isOnTheDiet: true,
     },
