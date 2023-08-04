@@ -3,5 +3,5 @@ export type MealDTO = {
   description: string;
   date: string;
   hour: string;
-  isOnTheDiet: boolean;
+  isOnTheDiet: boolean | undefined;
 };

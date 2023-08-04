@@ -39,7 +39,7 @@ const InputControll: React.FC<Props> = ({
 
   return (
     <Container>
-      <Label>{labelText}</Label>
+      <Label hasError={hasError}>{labelText}</Label>
       {inputType === "default" ? (
         <Input
           hasError={hasError}
@@ -57,6 +57,7 @@ const InputControll: React.FC<Props> = ({
           isFilled={isFilled}
           value={dateMask(value)}
           returnKeyType="done"
+          keyboardType="number-pad"
           onChangeText={handleChangeText}
           placeholder={placeholderText}
           multiline={multiline}
@@ -69,6 +70,7 @@ const InputControll: React.FC<Props> = ({
             isFilled={isFilled}
             value={timeMask(value)}
             returnKeyType="done"
+            keyboardType="number-pad"
             onChangeText={handleChangeText}
             placeholder={placeholderText}
             multiline={multiline}

@@ -2,18 +2,21 @@ import styled, { css } from "styled-components/native";
 import { TextInput } from "react-native";
 
 export const Container = styled.View`
-  flex: 1;
-  max-height: 100px;
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 4px;
 `;
 
-export const Label = styled.Text`
-  ${({ theme }) => css`
+type LabelProps = {
+  hasError: boolean;
+};
+
+export const Label = styled.Text<LabelProps>`
+  ${({ theme, hasError }) => css`
     font-size: ${theme.FONT_SIZE.TITLE_XS}px;
     font-family: ${theme.FONT_FAMILY.BOLD};
-    color: ${theme.COLORS.GRAY_1};
+    color: ${hasError ? theme.COLORS.RED_DARK : theme.COLORS.GRAY_1};
   `}
 `;
 
@@ -23,7 +26,6 @@ type InputProps = {
 };
 
 export const Input = styled(TextInput)<InputProps>`
-  
   padding: 14px;
   ${({ theme, hasError, isFilled }) => css`
     border: 1px solid
