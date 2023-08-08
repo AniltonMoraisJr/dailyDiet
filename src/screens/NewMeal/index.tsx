@@ -10,9 +10,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import InputControll from "@components/InputControll";
 import Button from "@components/Button";
 import SwitchSelectControll from "@components/SwitchSelectControll";
+import { useTheme } from "styled-components/native";
+import { storeNewMeal } from "@storage/meals/storeNewMeal";
 
 const NewMeal: React.FC = () => {
   const navigate = useNavigation();
+  const { COLORS } = useTheme();
 
   const {
     control,
@@ -34,9 +37,15 @@ const NewMeal: React.FC = () => {
     },
   });
 
-  const onSubmit = handleSubmit((data: MealDTO) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async (data: MealDTO) => {
+    try {
+      await storeNewMeal(data);
+      navigate.navigate("newMealFeedback", { onDiet: data.isOnTheDiet! });
+    } catch (error) {
+      console.error(error);
+    }
   });
+
   return (
     <Container>
       <Header
@@ -46,7 +55,7 @@ const NewMeal: React.FC = () => {
       <KeyboardAvoidingView
         style={{
           flex: 1,
-          backgroundColor: "#fff",
+          backgroundColor: COLORS.WHITE,
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
         }}
@@ -138,7 +147,7 @@ const NewMeal: React.FC = () => {
           paddingBottom: Platform.OS === "android" ? 27 : 0,
           justifyContent: `center`,
           alignItems: "center",
-          backgroundColor: "#fff",
+          backgroundColor: COLORS.WHITE,
         }}
       >
         <Button

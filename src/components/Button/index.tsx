@@ -10,7 +10,7 @@ type Props = TouchableOpacityProps & {
   iconPosition?: "right" | "left";
   title: string;
   type?: ButtonType;
-  width?: number
+  width?: number;
 };
 
 const Button: React.FC<Props> = ({
@@ -30,6 +30,9 @@ const Button: React.FC<Props> = ({
             color: type === "PRIMARY" ? COLORS.WHITE : COLORS.GRAY_1,
             weight: "bold",
             size: 18,
+            style: {
+              marginRight: 12,
+            },
           }}
         >
           {icon}
@@ -42,6 +45,9 @@ const Button: React.FC<Props> = ({
             color: type === "PRIMARY" ? COLORS.WHITE : COLORS.GRAY_1,
             weight: "bold",
             size: 18,
+            style: {
+              marginLeft: 12,
+            },
           }}
         >
           {icon}

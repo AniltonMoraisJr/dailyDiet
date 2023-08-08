@@ -7,6 +7,7 @@ import StatisticCard from "@components/StatisticCard";
 import Button from "@components/Button";
 import { Plus } from "phosphor-react-native";
 import { useNavigation } from "@react-navigation/native";
+import MealsList from "@components/MealsList";
 
 const Home: React.FC = () => {
   const navigate = useNavigation();
@@ -24,10 +25,13 @@ const Home: React.FC = () => {
           colorType="GREEN"
           titleSize="TITLE_G"
         />
-        <ScrollView>
-          <BodyTextRefeicoes>Refeições</BodyTextRefeicoes>
-          <Button icon={<Plus />} title="Nova refeição" onPress={() => navigate.navigate('newMeal')} />
-        </ScrollView>
+        <BodyTextRefeicoes>Refeições</BodyTextRefeicoes>
+        <Button
+          icon={<Plus />}
+          title="Nova refeição"
+          onPress={() => navigate.navigate("newMeal")}
+        />
+        <MealsList />
       </Body>
     </Container>
   );

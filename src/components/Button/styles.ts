@@ -5,17 +5,16 @@ export type ButtonType = "PRIMARY" | "SECONDARY";
 
 type ButtonStyleProps = {
   type: ButtonType;
-  width?: number
+  width?: number;
 };
 
 export const Container = styled(TouchableOpacity)<ButtonStyleProps>`
   padding: 16px 24px;
   flex-direction: row;
-  gap: 12px;
   justify-content: center;
   align-items: center;
 
-  width: ${props => props.width ? `${props.width}px` : '100%'};
+  width: ${(props) => (props.width ? `${props.width}px` : "100%")};
 
   ${(props) =>
     props.type === "PRIMARY"

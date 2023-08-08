@@ -5,6 +5,9 @@ export declare global {
       onboarding: undefined;
       home: undefined;
       newMeal: undefined;
+      newMealFeedback: {
+        onDiet: boolean;
+      };
     }
   }
 }
