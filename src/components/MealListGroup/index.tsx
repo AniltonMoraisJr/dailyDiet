@@ -1,7 +1,14 @@
 import { MealDTO } from "@domains/MealDTO";
 import React from "react";
 import { FlatList, Text, View } from "react-native";
-import { Circle, Container, MealCardItem, MealDateTitle } from "./styles";
+import {
+  Circle,
+  Container,
+  MealCardItem,
+  MealCardItemHourText,
+  MealCardItemNameText,
+  MealDateTitle,
+} from "./styles";
 
 // import { Container } from './styles';
 
@@ -12,10 +19,10 @@ type PropsGroupItem = {
 const MealListGroupItem: React.FC<PropsGroupItem> = ({ meal }) => {
   return (
     <MealCardItem>
-      <View style={{ flex: 1, flexDirection: "row" }}>
-        <Text>{meal.hour}</Text>
-        <Text> | </Text>
-        <Text>{meal.name}</Text>
+      <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
+        <MealCardItemHourText>{meal.hour}</MealCardItemHourText>
+        <Text style={{ marginHorizontal: 12 }}>|</Text>
+        <MealCardItemNameText>{meal.name}</MealCardItemNameText>
       </View>
       <Circle onDiet={meal.isOnTheDiet!} />
     </MealCardItem>

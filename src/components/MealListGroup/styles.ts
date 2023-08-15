@@ -30,6 +30,22 @@ export const MealCardItem = styled.TouchableOpacity`
   margin-bottom: 16px;
 `;
 
+export const MealCardItemHourText = styled.Text`
+  ${({ theme }) => css`
+    font-size: ${theme.FONT_SIZE.BODY_XS}px;
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    color: ${theme.COLORS.GRAY_1};
+  `}
+`;
+
+export const MealCardItemNameText = styled.Text`
+  ${({ theme }) => css`
+    font-size: ${theme.FONT_SIZE.BODY_M}px;
+    font-family: ${theme.FONT_FAMILY.REGULAR};
+    color: ${theme.COLORS.GRAY_2};
+  `}
+`;
+
 type CircleProps = {
   onDiet: boolean;
 };

@@ -8,6 +8,7 @@ type HeaderContainerProps = {
 
 export const Container = styled(SafeAreaView)<HeaderContainerProps>`
   width: 100%;
+  display: flex;
   padding-top: 29px;
   ${(props) =>
     Platform.OS === "android" &&
@@ -23,7 +24,7 @@ export const Container = styled(SafeAreaView)<HeaderContainerProps>`
       : backgroundType === "success"
       ? theme.COLORS.GREEN_LIGHT
       : theme.COLORS.RED_LIGHT};
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `;
 
@@ -41,4 +42,7 @@ export const Title = styled.Text`
   `}
 `;
 
-export const IconContainer = styled.TouchableOpacity``;
+export const IconContainer = styled.TouchableOpacity`
+  justify-content: flex-start;
+  align-items: flex-start;
+`;

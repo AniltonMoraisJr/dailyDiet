@@ -8,6 +8,7 @@ export declare global {
       newMealFeedback: {
         onDiet: boolean;
       };
+      statistics: undefined;
     }
   }
 }
