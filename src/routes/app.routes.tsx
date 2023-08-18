@@ -6,6 +6,7 @@ import Onboarding from "@screens/Onboarding";
 import NewMeal from "@screens/NewMeal";
 import NewMealFeedback from "@screens/NewMealFeedback";
 import Statistics from "@screens/Statistics";
+import MealDetail from "@screens/MealDetail";
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ const AppRoutes: React.FC = () => {
     >
       <Stack.Screen name="onboarding" component={Onboarding} />
       <Stack.Screen name="home" component={Home} />
+      <Stack.Screen name="showMeal" component={MealDetail} />
       <Stack.Screen name="newMeal" component={NewMeal} />
       <Stack.Screen name="newMealFeedback" component={NewMealFeedback} />
       <Stack.Screen name="statistics" component={Statistics} />

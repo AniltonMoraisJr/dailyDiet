@@ -6,7 +6,7 @@ import { getAllMeals } from "./getAllMeals";
 export async function storeNewMeal(newMeal: MealDTO) {
   try {
     const storedMeals = await getAllMeals();
-    storedMeals.push(newMeal);
+    storedMeals.push({ ...newMeal, id: new Date().getTime() });
     await AsyncStorage.setItem(MEAL_COLLECTION, JSON.stringify(storedMeals));
   } catch (error) {
     throw error;

@@ -9,6 +9,7 @@ import {
   MealCardItemNameText,
   MealDateTitle,
 } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 // import { Container } from './styles';
 
@@ -17,8 +18,11 @@ type PropsGroupItem = {
 };
 
 const MealListGroupItem: React.FC<PropsGroupItem> = ({ meal }) => {
+  const navigate = useNavigation();
   return (
-    <MealCardItem>
+    <MealCardItem
+      onPress={() => navigate.navigate("showMeal", { mealId: meal.id! })}
+    >
       <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
         <MealCardItemHourText>{meal.hour}</MealCardItemHourText>
         <Text style={{ marginHorizontal: 12 }}>|</Text>

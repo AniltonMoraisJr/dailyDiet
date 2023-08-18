@@ -49,16 +49,18 @@ const Statistics: React.FC = () => {
       : percentagePositive * 100;
   }, [totalOfMeals, totalOfMealsOnDiet, totalOfMealsOffDiet]);
 
-  const fetchMeals = useCallback(async () => {
+  const fetchMeals = async () => {
     try {
       const storedMeals = await getAllMeals();
       setMeals(storedMeals);
     } catch (error) {}
-  }, []);
+  };
 
-  useFocusEffect(() => {
-    fetchMeals();
-  });
+  useFocusEffect(
+    useCallback(() => {
+      fetchMeals();
+    }, [])
+  );
 
   return (
     <Container onDiet={percentageOfMealsOnDiet > 0}>

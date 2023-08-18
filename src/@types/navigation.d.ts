@@ -9,6 +9,9 @@ export declare global {
         onDiet: boolean;
       };
       statistics: undefined;
+      showMeal: {
+        mealId: number;
+      };
     }
   }
 }

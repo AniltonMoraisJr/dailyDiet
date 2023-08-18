@@ -29,17 +29,17 @@ export const Container = styled(SafeAreaView)<HeaderContainerProps>`
 `;
 
 export const TitleContainer = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const Title = styled.Text`
+  text-align: center;
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_1};
     font-size: ${theme.FONT_SIZE.TITLE_S}px;
     font-family: ${theme.FONT_FAMILY.BOLD};
-  `}
+  `};
 `;
 
 export const IconContainer = styled.TouchableOpacity`

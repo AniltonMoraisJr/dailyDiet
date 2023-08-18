@@ -33,17 +33,18 @@ const Home: React.FC = () => {
       : percentagePositive * 100;
   }, [meals]);
 
-  const fetchMeals = useCallback(async () => {
+  const fetchMeals = async () => {
     try {
       const storedMeals = await getAllMeals();
-
       setMeals(storedMeals);
     } catch (error) {}
-  }, []);
+  };
 
-  useFocusEffect(() => {
-    fetchMeals();
-  });
+  useFocusEffect(
+    useCallback(() => {
+      fetchMeals();
+    }, [])
+  );
 
   return (
     <Container>
@@ -76,7 +77,7 @@ const Home: React.FC = () => {
           title="Nova refeição"
           onPress={() => navigate.navigate("newMeal")}
         />
-        <MealsList />
+        <MealsList mealsList={meals} />
       </Body>
     </Container>
   );
