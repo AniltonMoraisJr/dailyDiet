@@ -1,58 +1,39 @@
-import React, { useCallback, useState, useMemo, useEffect } from "react";
-import {
-  useFocusEffect,
-  useNavigation,
-  useRoute,
-} from "@react-navigation/native";
-import { getAllMeals } from "@storage/meals/getAllMeals";
+import React, { useCallback, useEffect, useState } from "react";
 import { MealDTO } from "@domains/MealDTO";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
   Text,
-  View,
 } from "react-native";
 import { useTheme } from "styled-components/native";
 
-import Header from "@components/Header";
-import {
-  Body,
-  Circle,
-  Container,
-  ContainerHeaderStatistic,
-  OnDietCard,
-  OnDietCardText,
-  SubTitle,
-  Title,
-} from "./styles";
-import StatisticCard from "@components/StatisticCard";
-import { SafeAreaView } from "react-native-safe-area-context";
 import Button from "@components/Button";
-import {
-  Pencil,
-  PencilLine,
-  PencilSimple,
-  PencilSimpleLine,
-  Trash,
-  TrashSimple,
-} from "phosphor-react-native";
+import Header from "@components/Header";
 import { getMealById } from "@storage/meals/getMealById";
+import { PencilSimpleLine, Trash } from "phosphor-react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Body, Circle, Container, OnDietCard, OnDietCardText } from "./styles";
+import ModalDeleteMeal from "@components/ModalDeleteMeal";
 
 type RouteParams = {
   mealId: number;
 };
 
 const MealDetail: React.FC = () => {
+  const [meal, setMeal] = useState<MealDTO | null>(null);
+  const [isModalDeleteVisible, setIsModalDeleteVisible] = useState(false);
+
   const navigate = useNavigation();
   const { params } = useRoute();
-
   const { COLORS, FONT_FAMILY, FONT_SIZE } = useTheme();
 
-  const [meal, setMeal] = useState<MealDTO | null>(null);
-
   const { mealId } = params as RouteParams;
+
+  const openOrHideModalDelete = useCallback(() => {
+    setIsModalDeleteVisible((prevState) => !prevState);
+  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -148,14 +129,25 @@ const MealDetail: React.FC = () => {
           width={320}
           icon={<PencilSimpleLine />}
           title="Editar refeição"
+          onPress={() =>
+            navigate.navigate("editMeal", {
+              mealId,
+            })
+          }
         />
         <Button
           type="SECONDARY"
           width={320}
           icon={<Trash />}
           title="Excluir refeição"
+          onPress={openOrHideModalDelete}
         />
       </SafeAreaView>
+      <ModalDeleteMeal
+        id={mealId}
+        isVisible={isModalDeleteVisible}
+        openOrHideModal={openOrHideModalDelete}
+      />
     </Container>
   );
 };

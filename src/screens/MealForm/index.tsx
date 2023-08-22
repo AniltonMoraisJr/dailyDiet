@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import React, { useCallback, useEffect, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Controller, useForm } from "react-hook-form";
 import { MealDTO } from "@domains/MealDTO";
 
@@ -12,17 +12,27 @@ import Button from "@components/Button";
 import SwitchSelectControll from "@components/SwitchSelectControll";
 import { useTheme } from "styled-components/native";
 import { storeNewMeal } from "@storage/meals/storeNewMeal";
+import { getMealById } from "@storage/meals/getMealById";
+import { updateMeal } from "@storage/meals/updateMeal";
 
-const NewMeal: React.FC = () => {
+type RouteParams = {
+  mealId: number;
+};
+
+const MealForm: React.FC = () => {
+  const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigation();
+  const { params } = useRoute();
   const { COLORS } = useTheme();
 
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<MealDTO>({
     defaultValues: {
+      id: null,
       name: "",
       description: "",
       date: new Date(Date.now()).toLocaleDateString("pt-BR", {
@@ -39,18 +49,45 @@ const NewMeal: React.FC = () => {
 
   const onSubmit = handleSubmit(async (data: MealDTO) => {
     try {
-      await storeNewMeal(data);
-      navigate.navigate("newMealFeedback", { onDiet: data.isOnTheDiet! });
+      if (isEditing) {
+        await updateMeal(data.id!, data);
+        navigate.navigate("home");
+      } else {
+        await storeNewMeal(data);
+        navigate.navigate("newMealFeedback", { onDiet: data.isOnTheDiet! });
+      }
     } catch (error) {
       console.error(error);
     }
   });
 
+  const handleGoBack = useCallback(() => {
+    if (isEditing) {
+      navigate.goBack();
+    } else {
+      navigate.navigate("home");
+    }
+  }, [isEditing]);
+
+  useEffect(() => {
+    async function fetchData(mealId: number) {
+      try {
+        const result = await getMealById(mealId);
+        reset(result!);
+        setIsEditing(true);
+      } catch (error) {}
+    }
+    if (params) {
+      const { mealId } = params as RouteParams;
+      fetchData(mealId);
+    }
+  }, [params]);
+
   return (
     <Container>
       <Header
-        title="Nova refeição"
-        handleIconArrowLeft={() => navigate.navigate("home")}
+        title={isEditing ? "Editar refeição" : "Nova refeição"}
+        handleIconArrowLeft={handleGoBack}
       />
       <KeyboardAvoidingView
         style={{
@@ -152,7 +189,7 @@ const NewMeal: React.FC = () => {
       >
         <Button
           width={320}
-          title="Cadastrar refeição"
+          title={isEditing ? "Salvar alterações" : "Cadastrar refeição"}
           onPress={() => onSubmit()}
         />
       </SafeAreaView>
@@ -160,4 +197,4 @@ const NewMeal: React.FC = () => {
   );
 };
 
-export default NewMeal;
+export default MealForm;

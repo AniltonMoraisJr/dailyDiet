@@ -5,8 +5,6 @@ import { FlatList, View } from "react-native";
 import { getAllMeals } from "@storage/meals/getAllMeals";
 import MealListGroup from "@components/MealListGroup";
 
-// import { Container } from './styles';
-
 type MealGrouped = {
   mealDate: string;
   meals: MealDTO[];
@@ -22,6 +20,7 @@ const MealsList: React.FC<MealsListProps> = ({ mealsList }) => {
   useEffect(() => {
     let mealsGrouped = [] as MealGrouped[];
     const storedMeals = mealsList;
+    storedMeals.sort((a, b) => a.hour.localeCompare(b.hour));
     storedMeals.forEach((meal) => {
       if (
         mealsGrouped.filter((item) => item.mealDate === meal.date).length > 0

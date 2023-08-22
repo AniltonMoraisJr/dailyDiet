@@ -12,6 +12,9 @@ export declare global {
       showMeal: {
         mealId: number;
       };
+      editMeal: {
+        mealId?: number;
+      };
     }
   }
 }

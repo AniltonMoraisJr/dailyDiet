@@ -27,6 +27,32 @@ const Statistics: React.FC = () => {
 
   const [meals, setMeals] = useState<MealDTO[]>([]);
 
+  const betterSequence = useMemo(() => {
+    let betterSequence = 0;
+    let cont = 0;
+    let loopMeals = meals;
+    loopMeals = loopMeals.sort((a, b) => a.hour.localeCompare(b.hour));
+
+    loopMeals.forEach((meal, index) => {
+      if (meal.isOnTheDiet === true) {
+        cont++;
+      } else {
+        if (cont > betterSequence) {
+          betterSequence = cont;
+          cont = 0;
+        }
+      }
+      if (index === loopMeals.length - 1) {
+        if (cont > betterSequence) {
+          betterSequence = cont;
+          cont = 0;
+        }
+      }
+    });
+
+    return betterSequence;
+  }, [meals]);
+
   const totalOfMeals = useMemo(() => {
     return meals.length;
   }, [meals]);
@@ -109,6 +135,12 @@ const Statistics: React.FC = () => {
             >
               Estatísticas gerais
             </Text>
+            <StatisticCard
+              colorType="GRAY"
+              title={betterSequence.toString()}
+              titleSize="TITLE_M"
+              subTitle="melhor sequência de pratos dentro da dieta"
+            />
             <StatisticCard
               colorType="GRAY"
               title={totalOfMeals.toString()}
