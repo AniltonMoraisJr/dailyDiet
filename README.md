@@ -4,7 +4,7 @@
 
 ## About
 
-Project develop in course Ignite React Native´s (chapter 02 - chalange).
+Project develop in course Ignite React Native´s (chapter 02 - challenge).
 
 In this project I could use the follow tecnologies:
 
